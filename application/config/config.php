@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost:8080/Project/ta_alkindi/';
+$config['base_url'] = 'http://localhost/Pribadi/Tugas_Akhir/ta_alkindi/';
 //$config['base_url'] = 'http://localhost/Project-git/um_simail/';
 
 /*
@@ -53,7 +53,7 @@ $config['index_page'] = '';
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-$config['uri_protocol']	= 'AUTO';
+$config['uri_protocol']    = 'AUTO';
 
 /*
 |--------------------------------------------------------------------------
@@ -77,7 +77,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'english';
+$config['language']    = 'english';
 
 /*
 |--------------------------------------------------------------------------
@@ -378,15 +378,15 @@ $config['encryption_key'] = '';
 | except for 'cookie_prefix' and 'cookie_httponly', which are ignored here.
 |
 */
-$config['sess_cookie_name']		= 'ci_session';
-$config['sess_expiration']		= 7200;
-$config['sess_expire_on_close']	= FALSE;
-$config['sess_encrypt_cookie']	= FALSE;
-$config['sess_use_database']	= FALSE;
-$config['sess_table_name']		= 'ci_sessions';
-$config['sess_match_ip']		= FALSE;
-$config['sess_match_useragent']	= TRUE;
-$config['sess_time_to_update']	= 300;
+$config['sess_cookie_name']        = 'ci_session';
+$config['sess_expiration']        = 7200;
+$config['sess_expire_on_close']    = FALSE;
+$config['sess_encrypt_cookie']    = FALSE;
+$config['sess_use_database']    = FALSE;
+$config['sess_table_name']        = 'ci_sessions';
+$config['sess_match_ip']        = FALSE;
+$config['sess_match_useragent']    = TRUE;
+$config['sess_time_to_update']    = 300;
 
 /*
 |--------------------------------------------------------------------------
@@ -403,11 +403,11 @@ $config['sess_time_to_update']	= 300;
 |       'cookie_httponly') will also affect sessions.
 |
 */
-$config['cookie_prefix']	= '';
-$config['cookie_domain']	= '';
-$config['cookie_path']		= '/';
-$config['cookie_secure']	= FALSE;
-$config['cookie_httponly'] 	= FALSE;
+$config['cookie_prefix']    = '';
+$config['cookie_domain']    = '';
+$config['cookie_path']        = '/';
+$config['cookie_secure']    = FALSE;
+$config['cookie_httponly']     = FALSE;
 
 /*
 |--------------------------------------------------------------------------
