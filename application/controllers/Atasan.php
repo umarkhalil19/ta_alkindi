@@ -38,7 +38,28 @@ class Atasan extends CI_Controller
 
     function laporan_pending()
     {
-        $data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE laporan_bulan > 0 AND laporan_status = 0 OR laporan_hari > 7 AND laporan_status = 0 ORDER BY laporan_tanggal_masuk DESC");
+        $data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE laporan_bulan > 0 AND laporan_status = 0 OR laporan_hari > 7 AND laporan_status = 0 ORDER BY laporan_tanggal_masuk ASC");
         $this->mylib->atview('v_laporan_pending', $data);
+    }
+
+    function laporan_belum_proses()
+    {
+        $data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE laporan_status = 0 AND laporan_bulan = 0 AND laporan_hari <= 7 ORDER BY laporan_tanggal_masuk ASC");
+        $this->mylib->atview('v_laporan_belum_proses', $data);
+    }
+
+    function detail_laporan($id)
+    {
+        $w = [
+            'laporan_id' => $id
+        ];
+        $data['laporan'] = $this->m_vic->edit_data($w, 'tbl_laporan')->row();
+        $this->mylib->mview('v_detail_laporan', $data);
+    }
+
+    function logout()
+    {
+        $this->session->sess_destroy();
+        redirect(base_url());
     }
 }

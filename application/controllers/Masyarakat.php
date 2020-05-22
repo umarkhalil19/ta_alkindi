@@ -30,7 +30,7 @@ class Masyarakat extends CI_Controller
 		$w = [
 			'h_pengguna' => $id
 		];
-		$data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE h_pengguna='$id' ORDER BY laporan_tanggal_masuk DESC");
+		$data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE h_pengguna='$id' ORDER BY laporan_tanggal_masuk ASC");
 		$this->mylib->mview('v_laporan', $data);
 	}
 
@@ -40,7 +40,7 @@ class Masyarakat extends CI_Controller
 		$w = [
 			'h_pengguna' => $id
 		];
-		$data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE h_pengguna='$id' AND laporan_status=1 ORDER BY laporan_tanggal_proses DESC");
+		$data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE h_pengguna='$id' AND laporan_status=1 ORDER BY laporan_tanggal_proses ASC");
 		$this->mylib->mview('v_laporan_proses', $data);
 	}
 
@@ -50,7 +50,7 @@ class Masyarakat extends CI_Controller
 		$w = [
 			'h_pengguna' => $id
 		];
-		$data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE h_pengguna='$id' AND laporan_bulan > 0 AND laporan_status = 0 OR h_pengguna='$id' AND laporan_hari > 7 AND laporan_status = 0 ORDER BY laporan_tanggal_masuk DESC");
+		$data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE h_pengguna='$id' AND laporan_bulan > 0 AND laporan_status = 0 OR h_pengguna='$id' AND laporan_hari > 7 AND laporan_status = 0 ORDER BY laporan_tanggal_masuk ASC");
 		$this->mylib->mview('v_laporan_pending', $data);
 	}
 

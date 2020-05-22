@@ -1,11 +1,11 @@
 <section role="main" class="content-body">
     <header class="page-header">
-        <h2>laporan Diproses</h2>
+        <h2>laporan Belum Diproses</h2>
     </header>
     <!-- start: page -->
     <section class="panel">
         <header class="panel-heading">
-            <h2 class="panel-title">Data Laporan Diproses</h2>
+            <h2 class="panel-title">Data Laporan Belum Diproses</h2>
         </header>
         <div class="panel-body">
             <table class="table table-bordered table-striped mb-none" id="datatable-default">
@@ -15,7 +15,6 @@
                         <th>Judul</th>
                         <th>Komisi Tujuan</th>
                         <th>Tanggal Laporan Masuk</th>
-                        <th>Tanggal Laporan Diproses</th>
                         <!-- <th>Status Laporan</th> -->
                         <th>Detail</th>
                     </tr>
@@ -31,7 +30,6 @@
                             <td><?php echo $l->laporan_judul ?></td>
                             <td><?php echo $nama->komisi_nama ?></td>
                             <td><?php echo TanggalIndo($l->laporan_tanggal_masuk) ?></td>
-                            <td><?php echo TanggalIndo($l->laporan_tanggal_proses) ?></td>
                             <!-- <td><?php //echo $status 
                                         ?></td> -->
                             <td>

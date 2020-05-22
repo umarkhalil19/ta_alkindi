@@ -46,7 +46,7 @@
                             <!-- <td><?php //echo $status 
                                         ?></td> -->
                             <td>
-                                <a href="<?php echo base_url() . 'masyarakat/detail_laporan/' . $l->laporan_id ?>" class="btn btn-primary"><span class="fa fa-info-circle"></span></a>
+                                <a href="<?php echo base_url() . 'atasan/detail_laporan/' . $l->laporan_id ?>" class="btn btn-primary"><span class="fa fa-info-circle"></span></a>
                             </td>
                         </tr>
                     <?php } ?>

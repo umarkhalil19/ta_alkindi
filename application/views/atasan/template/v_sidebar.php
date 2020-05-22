@@ -45,6 +45,11 @@
 									</a>
 								</li>
 								<li>
+									<a href="<?php echo base_url() . 'atasan/laporan_belum_proses' ?>">
+										Belum Proses
+									</a>
+								</li>
+								<li>
 									<a href="<?php echo base_url() . 'atasan/laporan_pending' ?>">
 										Lewat Tenggat Waktu
 									</a>

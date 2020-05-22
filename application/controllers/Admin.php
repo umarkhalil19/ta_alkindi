@@ -214,7 +214,7 @@ class Admin extends CI_Controller
 
 	function masyarakat_laporan($id)
 	{
-		$data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE h_pengguna ='$id' ORDER BY laporan_tanggal_masuk DESC");
+		$data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE h_pengguna ='$id' ORDER BY laporan_tanggal_masuk ASC");
 		$data['nama'] = $this->db->query("SELECT masyarakat_nama FROM tbl_masyarakat WHERE masyarakat_id='$id'")->row();
 		$this->mylib->aview('v_laporan', $data);
 	}
