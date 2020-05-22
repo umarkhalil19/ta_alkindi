@@ -1,16 +1,18 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Admin extends CI_Controller
+{
 
-	function __construct(){
+	function __construct()
+	{
 		parent::__construct();
 		date_default_timezone_set('Asia/Jakarta');
-        $this->load->helper('url');
+		$this->load->helper('url');
 		$this->load->helper('vic_helper');
 		$this->load->helper('my_helper');
-        $this->load->helper('vic_convert_helper');
-        $this->load->library(array('session','form_validation','mylib'));
+		$this->load->helper('vic_convert_helper');
+		$this->load->library(array('session', 'form_validation', 'mylib'));
 		$this->load->model('m_vic');
 		if ($this->session->userdata('level') != 99) {
 			redirect(base_url());
@@ -26,7 +28,7 @@ class Admin extends CI_Controller {
 	{
 		$this->load->database();
 		$data['komisi'] = $this->m_vic->get_data('tbl_komisi');
-		$this->mylib->aview('v_komisi',$data);
+		$this->mylib->aview('v_komisi', $data);
 	}
 
 	function tambah_komisi()
@@ -38,7 +40,7 @@ class Admin extends CI_Controller {
 	function tambah_komisi_act()
 	{
 		$this->load->database();
-		$this->form_validation->set_rules('nama','Nama','required');
+		$this->form_validation->set_rules('nama', 'Nama', 'required');
 		if ($this->form_validation->run() != true) {
 			$this->mylib->aview('v_tambah_barang');
 		}
@@ -48,8 +50,8 @@ class Admin extends CI_Controller {
 			'h_tanggal' => date('Y-m-d'),
 			'h_waktu' => date('H:i:s')
 		];
-		$this->m_vic->insert_data($data,'tbl_komisi');
-		$this->session->set_flashdata('suces','Data Berhasil Ditambah');
+		$this->m_vic->insert_data($data, 'tbl_komisi');
+		$this->session->set_flashdata('suces', 'Data Berhasil Ditambah');
 		redirect('admin/komisi?notif=suces');
 	}
 
@@ -58,8 +60,8 @@ class Admin extends CI_Controller {
 		$w = [
 			'komisi_id' => $id
 		];
-		$data['komisi'] = $this->m_vic->edit_data($w,'tbl_komisi')->row();
-		$this->mylib->aview('v_edit_komisi',$data);
+		$data['komisi'] = $this->m_vic->edit_data($w, 'tbl_komisi')->row();
+		$this->mylib->aview('v_edit_komisi', $data);
 	}
 
 	function update_komisi()
@@ -74,8 +76,8 @@ class Admin extends CI_Controller {
 			'h_tanggal' => date('Y-m-d'),
 			'h_waktu' => date('H:i:s')
 		];
-		$this->m_vic->update_data($w,$data,'tbl_komisi');
-		$this->session->set_flashdata('suces','Data Berhasil Diubah');
+		$this->m_vic->update_data($w, $data, 'tbl_komisi');
+		$this->session->set_flashdata('suces', 'Data Berhasil Diubah');
 		redirect('admin/komisi?notif=suces');
 	}
 
@@ -83,24 +85,24 @@ class Admin extends CI_Controller {
 	{
 		$this->load->database();
 		$data['operator'] = $this->m_vic->get_data('tbl_users');
-		$this->mylib->aview('v_operator',$data);
+		$this->mylib->aview('v_operator', $data);
 	}
 
 	function tambah_operator()
 	{
 		$this->load->database();
 		$data['komisi'] = $this->m_vic->get_data('tbl_komisi');
-		$this->mylib->aview('v_tambah_operator',$data);
+		$this->mylib->aview('v_tambah_operator', $data);
 	}
 
 	function tambah_operator_act()
 	{
 		$this->load->database();
-		$this->form_validation->set_rules('nama','Nama','required');
-		$this->form_validation->set_rules('username','Username','required');
+		$this->form_validation->set_rules('nama', 'Nama', 'required');
+		$this->form_validation->set_rules('username', 'Username', 'required');
 		if ($this->form_validation->run() != true) {
 			$data['komisi'] = $this->m_vic->get_data('tbl_komisi');
-			$this->mylib->aview('v_tambah_operator',$data);
+			$this->mylib->aview('v_tambah_operator', $data);
 		}
 		$data = [
 			'user_name' => $this->input->post('nama'),
@@ -114,8 +116,8 @@ class Admin extends CI_Controller {
 			'h_tanggal' => date('Y-m-d'),
 			'h_waktu' => date('H:i:s')
 		];
-		$this->m_vic->insert_data($data,'tbl_users');
-		$this->session->set_flashdata('suces','Data Berhasil Ditambah');
+		$this->m_vic->insert_data($data, 'tbl_users');
+		$this->session->set_flashdata('suces', 'Data Berhasil Ditambah');
 		redirect('admin/operator?notif=suces');
 	}
 
@@ -126,8 +128,8 @@ class Admin extends CI_Controller {
 			'user_id' => $id
 		];
 		$data['komisi'] = $this->m_vic->get_data('tbl_komisi');
-		$data['operator'] = $this->m_vic->edit_data($w,'tbl_users')->row();
-		$this->mylib->aview('v_edit_operator',$data);
+		$data['operator'] = $this->m_vic->edit_data($w, 'tbl_users')->row();
+		$this->mylib->aview('v_edit_operator', $data);
 	}
 
 	function update_operator()
@@ -147,14 +149,14 @@ class Admin extends CI_Controller {
 			'h_tanggal' => date('Y-m-d'),
 			'h_waktu' => date('H:i:s')
 		];
-		$this->m_vic->update_data($w,$data,'tbl_users');
+		$this->m_vic->update_data($w, $data, 'tbl_users');
 		if ($this->input->post('pass') != '') {
 			$pass = [
 				'user_pass' => str_mod(vic_slug_akun($this->input->post('pass'))),
 			];
-			$this->m_vic->update_data($w,$pass,'tbl_users');
+			$this->m_vic->update_data($w, $pass, 'tbl_users');
 		}
-		$this->session->set_flashdata('suces','Data Berhasil Diubah');
+		$this->session->set_flashdata('suces', 'Data Berhasil Diubah');
 		redirect('admin/operator?notif=suces');
 	}
 
@@ -163,8 +165,8 @@ class Admin extends CI_Controller {
 		$w = [
 			'user_id' => $id
 		];
-		$this->m_vic->delete_data($w,'tbl_users');
-		$this->session->set_flashdata('suces','Data Berhasil Dihapus');
+		$this->m_vic->delete_data($w, 'tbl_users');
+		$this->session->set_flashdata('suces', 'Data Berhasil Dihapus');
 		redirect('admin/operator?notif=suces');
 	}
 
@@ -172,24 +174,24 @@ class Admin extends CI_Controller {
 	{
 		$this->load->database();
 		$data['kata'] = $this->m_vic->get_data('tbl_kata_kunci');
-		$this->mylib->aview('v_kata_kunci',$data);
+		$this->mylib->aview('v_kata_kunci', $data);
 	}
 
 	function tambah_kata()
 	{
 		$this->load->database();
 		$data['komisi'] = $this->m_vic->get_data('tbl_komisi');
-		$this->mylib->aview('v_tambah_kata',$data);
+		$this->mylib->aview('v_tambah_kata', $data);
 	}
 
 	function tambah_kata_act()
 	{
 		$this->load->database();
-		$this->form_validation->set_rules('kata','Kata','required');
+		$this->form_validation->set_rules('kata', 'Kata', 'required');
 		// $this->form_validation->set_rules('username','Username','required');
 		if ($this->form_validation->run() != true) {
 			$data['komisi'] = $this->m_vic->get_data('tbl_komisi');
-			$this->mylib->aview('v_tambah_kata',$data);
+			$this->mylib->aview('v_tambah_kata', $data);
 		}
 		$data = [
 			'kata' => strtolower($this->input->post('kata')),
@@ -198,8 +200,8 @@ class Admin extends CI_Controller {
 			'h_tanggal' => date('Y-m-d'),
 			'h_waktu' => date('H:i:s')
 		];
-		$this->m_vic->insert_data($data,'tbl_kata_kunci');
-		$this->session->set_flashdata('suces','Data Berhasil Ditambah');
+		$this->m_vic->insert_data($data, 'tbl_kata_kunci');
+		$this->session->set_flashdata('suces', 'Data Berhasil Ditambah');
 		redirect('admin/kata_kunci?notif=suces');
 	}
 
@@ -207,10 +209,27 @@ class Admin extends CI_Controller {
 	{
 		$this->load->database();
 		$data['masyarakat'] = $this->m_vic->get_data('tbl_masyarakat');
-		$this->mylib->aview('v_masyarakat',$data);
+		$this->mylib->aview('v_masyarakat', $data);
 	}
 
-	function logout(){
+	function masyarakat_laporan($id)
+	{
+		$data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE h_pengguna ='$id' ORDER BY laporan_tanggal_masuk DESC");
+		$data['nama'] = $this->db->query("SELECT masyarakat_nama FROM tbl_masyarakat WHERE masyarakat_id='$id'")->row();
+		$this->mylib->aview('v_laporan', $data);
+	}
+
+	function detail_laporan($id)
+	{
+		$w = [
+			'laporan_id' => $id
+		];
+		$data['laporan'] = $this->m_vic->edit_data($w, 'tbl_laporan')->row();
+		$this->mylib->aview('v_detail_laporan', $data);
+	}
+
+	function logout()
+	{
 		$this->session->sess_destroy();
 		redirect(base_url());
 	}

@@ -31,7 +31,7 @@
                         <div class="col-sm-9">
                             <select name="komisi" class="form-control">
                                 <option value="">Pilih Komisi</option>
-                                <option value="0">Admin Sistem</option>
+                                <option value="0">Admin Sistem / Atasan</option>
                                 <?php
                                 foreach ($komisi->result() as $k) {
                                     echo '<option value="' . $k->komisi_id . '">' . $k->komisi_nama . '</option>';
@@ -63,6 +63,7 @@
                             <select name="level" class="form-control">
                                 <option value="">Pilih Level</option>
                                 <option value="99">Admin</option>
+                                <option value="0">Atasan</option>
                                 <option value="1">Operator</option>
                             </select>
                             <?php echo form_error('level', '<small><span class="text-danger">', '</span></small>') ?>
