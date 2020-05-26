@@ -16,7 +16,7 @@
 				<nav id="menu" class="nav-main" role="navigation">
 					<ul class="nav nav-main">
 						<li>
-							<a href="<?php echo base_url() . 'admin'; ?>">
+							<a href="<?php echo base_url() . 'masyarakat'; ?>">
 								<i class="fa fa-home" aria-hidden="true"></i>
 								<span>Dashboard</span>
 							</a>
@@ -42,6 +42,11 @@
 								<li>
 									<a href="<?php echo base_url() . 'masyarakat/laporan_proses' ?>">
 										Proses
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo base_url() . 'masyarakat/laporan_belum_proses' ?>">
+										Belum Proses
 									</a>
 								</li>
 								<li>

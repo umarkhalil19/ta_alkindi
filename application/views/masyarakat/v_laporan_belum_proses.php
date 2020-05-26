@@ -1,0 +1,45 @@
+<section role="main" class="content-body">
+    <header class="page-header">
+        <h2>laporan Belum Diproses</h2>
+    </header>
+    <!-- start: page -->
+    <section class="panel">
+        <header class="panel-heading">
+            <h2 class="panel-title">Data Laporan Belum Diproses</h2>
+        </header>
+        <div class="panel-body">
+            <table class="table table-bordered table-striped mb-none" id="datatable-default">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Judul</th>
+                        <th>Komisi Tujuan</th>
+                        <th>Tanggal Laporan Masuk</th>
+                        <!-- <th>Status Laporan</th> -->
+                        <th>Detail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $no = 1;
+                    foreach ($laporan->result() as $l) {
+                        $nama = $this->db->query("SELECT komisi_nama FROM tbl_komisi WHERE komisi_id='$l->laporan_komisi'")->row();
+                    ?>
+                        <tr>
+                            <td><?php echo $no++ ?></td>
+                            <td><?php echo $l->laporan_judul ?></td>
+                            <td><?php echo $nama->komisi_nama ?></td>
+                            <td><?php echo TanggalIndo($l->laporan_tanggal_masuk) ?></td>
+                            <!-- <td><?php //echo $status 
+                                        ?></td> -->
+                            <td>
+                                <a href="<?php echo base_url() . 'masyarakat/detail_laporan/' . $l->laporan_id ?>" class="btn btn-primary"><span class="fa fa-info-circle"></span></a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <!-- end: page -->
+</section>

@@ -44,6 +44,13 @@ class Masyarakat extends CI_Controller
 		$this->mylib->mview('v_laporan_proses', $data);
 	}
 
+	function laporan_belum_proses()
+	{
+		$id = $this->session->userdata('id');
+		$data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE laporan_status = 0 AND laporan_bulan = 0 AND laporan_hari <= 7 AND h_pengguna = $id ORDER BY laporan_tanggal_masuk ASC");
+		$this->mylib->mview('v_laporan_belum_proses', $data);
+	}
+
 	function laporan_pending()
 	{
 		$id = $this->session->userdata('id');
