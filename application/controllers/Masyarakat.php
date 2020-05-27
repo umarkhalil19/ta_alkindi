@@ -173,6 +173,30 @@ class Masyarakat extends CI_Controller
 		$this->mylib->mview('v_detail_laporan', $data);
 	}
 
+	function change_pass()
+	{
+		$this->mylib->mview('v_change_pass');
+	}
+
+	function change_pass_act()
+	{
+		$this->form_validation->set_rules('new_pass1', 'Password Baru', 'trim|required|min_length[8]|matches[new_pass2]');
+		$this->form_validation->set_rules('new_pass2', 'Konfirmasi Password Baru', 'trim|required|min_length[8]|matches[new_pass1]');
+		if ($this->form_validation->run() != true) {
+			$this->mylib->mview('v_change_pass');
+		} else {
+			$data = [
+				'masyarakat_pass' => str_mod(vic_slug_akun($this->input->post('new_pass1'))),
+			];
+			$w = [
+				'masyarakat_id' => $this->session->userdata('id')
+			];
+			$this->m_vic->update_data($w, $data, 'tbl_masyarakat');
+			$this->session->set_flashdata('suces', 'Password Berhasil Di Ubah');
+			redirect('masyarakat/change_pass?notif=suces');
+		}
+	}
+
 	function logout()
 	{
 		$this->session->sess_destroy();

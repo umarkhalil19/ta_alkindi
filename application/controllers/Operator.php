@@ -104,6 +104,30 @@ class Operator extends CI_Controller
 		redirect('operator/laporan?notif=suces');
 	}
 
+	function change_pass()
+	{
+		$this->mylib->oview('v_change_pass');
+	}
+
+	function change_pass_act()
+	{
+		$this->form_validation->set_rules('new_pass1', 'Password Baru', 'trim|required|min_length[8]|matches[new_pass2]');
+		$this->form_validation->set_rules('new_pass2', 'Konfirmasi Password Baru', 'trim|required|min_length[8]|matches[new_pass1]');
+		if ($this->form_validation->run() != true) {
+			$this->mylib->oview('v_change_pass');
+		} else {
+			$data = [
+				'user_pass' => str_mod(vic_slug_akun($this->input->post('new_pass1'))),
+			];
+			$w = [
+				'user_id' => $this->session->userdata('id')
+			];
+			$this->m_vic->update_data($w, $data, 'tbl_users');
+			$this->session->set_flashdata('suces', 'Password Berhasil Di Ubah');
+			redirect('operator/change_pass?notif=suces');
+		}
+	}
+
 	function logout()
 	{
 		$this->session->sess_destroy();

@@ -1,87 +1,76 @@
 <!doctype html>
 <html class="fixed">
-	<head>
 
-		<!-- Basic -->
-		<meta charset="UTF-8">
+<head>
 
-		<title>Sistem Informasi Pelaporan Terpadu</title>
-		<meta name="keywords" content="HTML5 Admin Template" />
-		<meta name="description" content="Porto Admin - Responsive HTML5 Template">
-		<meta name="author" content="okler.net">
+	<!-- Basic -->
+	<meta charset="UTF-8">
 
-		<!-- Mobile Metas -->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Sistem Informasi Pelaporan Terpadu</title>
+	<meta name="keywords" content="HTML5 Admin Template" />
+	<meta name="description" content="Porto Admin - Responsive HTML5 Template">
+	<meta name="author" content="okler.net">
 
-		<!-- Web Fonts  -->
-		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-		<!-- Vendor CSS -->
-		<link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/bootstrap/css/bootstrap.css" />
-		<link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/font-awesome/css/font-awesome.css" />
-		<link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/magnific-popup/magnific-popup.css" />
-		<link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
+	<!-- Web Fonts  -->
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
 
-		<!-- Specific Page Vendor CSS -->
-		<link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/select2/select2.css" />
-		<link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+	<!-- Vendor CSS -->
+	<link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/bootstrap/css/bootstrap.css" />
+	<link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/font-awesome/css/font-awesome.css" />
+	<link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/magnific-popup/magnific-popup.css" />
+	<link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
 
-		<!-- Theme CSS -->
-		<link rel="stylesheet" href="<?php echo base_url() ?>assets/stylesheets/theme.css" />
+	<!-- Specific Page Vendor CSS -->
+	<link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/select2/select2.css" />
+	<link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
 
-		<!-- Skin CSS -->
-		<link rel="stylesheet" href="<?php echo base_url() ?>assets/stylesheets/skins/default.css" />
+	<!-- Theme CSS -->
+	<link rel="stylesheet" href="<?php echo base_url() ?>assets/stylesheets/theme.css" />
 
-		<!-- Theme Custom CSS -->
-		<link rel="stylesheet" href="<?php echo base_url() ?>assets/stylesheets/theme-custom.css">
+	<!-- Skin CSS -->
+	<link rel="stylesheet" href="<?php echo base_url() ?>assets/stylesheets/skins/default.css" />
 
-		<!-- Head Libs -->
-		<script src="<?php echo base_url() ?>assets/vendor/modernizr/modernizr.js"></script>
+	<!-- Theme Custom CSS -->
+	<link rel="stylesheet" href="<?php echo base_url() ?>assets/stylesheets/theme-custom.css">
 
-	</head>
-	<body>
-		<section class="body">
+	<!-- Head Libs -->
+	<script src="<?php echo base_url() ?>assets/vendor/modernizr/modernizr.js"></script>
 
-			<!-- start: header -->
-			<header class="header">
-				<div class="logo-container">
-					<a href="<?php echo base_url()?>" class="logo">
-						<img src="<?php echo base_url() ?>assets/images/logo.png" height="35" alt="Porto Admin" />
-					</a>
-					<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
-						<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
-					</div>
+</head>
+
+<body>
+	<section class="body">
+
+		<!-- start: header -->
+		<header class="header">
+			<div class="logo-container">
+				<a href="<?php echo base_url() ?>" class="logo">
+					<img src="<?php echo base_url() ?>assets/images/new-logo.png" height="35" alt="Porto Admin" />
+				</a>
+				<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+					<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
 				</div>
-			
-				<!-- start: search & user box -->
-				<div class="header-right">
-					<span class="separator"></span>
-			
-					<div id="userbox" class="userbox">
-						<a href="#" data-toggle="dropdown">
-							<figure class="profile-picture">
-								<img src="<?php echo base_url()?>assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="<?php echo base_url()?>assets/images/!logged-user.jpg" />
-							</figure>
-							<div class="profile-info">
-								<span class="name"><?php echo $this->session->userdata('name')?></span>
-								<span class="role">Operator</span>
-							</div>
-			
-							<i class="fa custom-caret"></i>
-						</a>
-			
-						<div class="dropdown-menu">
-							<ul class="list-unstyled">
-								<li class="divider"></li>
-								<li>
-									<!-- <a role="menuitem" tabindex="-1" href="<?php //echo base_url().'operator/change_pass'?>"><i class="fa fa-lock"></i> Ubah Password</a> -->
-									<a role="menuitem" tabindex="-1" href="#"><i class="fa fa-lock"></i> Ubah Password</a>
-									<a role="menuitem" tabindex="-1" href="<?php echo base_url().'operator/logout'?>"><i class="fa fa-power-off"></i> Logout</a>
-								</li>
-							</ul>
+			</div>
+
+			<!-- start: search & user box -->
+			<div class="header-right">
+				<span class="separator"></span>
+
+				<div id="userbox" class="userbox">
+					<a href="#" data-toggle="dropdown">
+						<figure class="profile-picture">
+							<img src="<?php echo base_url() ?>assets/images/LOGO-KOTA-LHOKSEUMAWE.png" alt="Joseph Doe" class="img-circle" data-lock-picture="<?php echo base_url() ?>assets/images/LOGO-KOTA-LHOKSEUMAWE.png" />
+						</figure>
+						<div class="profile-info">
+							<span class="name"><?php echo $this->session->userdata('name') ?></span>
+							<span class="role">Operator</span>
 						</div>
-					</div>
+					</a>
 				</div>
-				<!-- end: search & user box -->
-			</header>
-			<!-- end: header -->
+			</div>
+			<!-- end: search & user box -->
+		</header>
+		<!-- end: header -->

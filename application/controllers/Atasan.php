@@ -54,7 +54,31 @@ class Atasan extends CI_Controller
             'laporan_id' => $id
         ];
         $data['laporan'] = $this->m_vic->edit_data($w, 'tbl_laporan')->row();
-        $this->mylib->mview('v_detail_laporan', $data);
+        $this->mylib->atview('v_detail_laporan', $data);
+    }
+
+    function change_pass()
+    {
+        $this->mylib->atview('v_change_pass');
+    }
+
+    function change_pass_act()
+    {
+        $this->form_validation->set_rules('new_pass1', 'Password Baru', 'trim|required|min_length[8]|matches[new_pass2]');
+        $this->form_validation->set_rules('new_pass2', 'Konfirmasi Password Baru', 'trim|required|min_length[8]|matches[new_pass1]');
+        if ($this->form_validation->run() != true) {
+            $this->mylib->atview('v_change_pass');
+        } else {
+            $data = [
+                'user_pass' => str_mod(vic_slug_akun($this->input->post('new_pass1'))),
+            ];
+            $w = [
+                'user_id' => $this->session->userdata('id')
+            ];
+            $this->m_vic->update_data($w, $data, 'tbl_users');
+            $this->session->set_flashdata('suces', 'Password Berhasil Di Ubah');
+            redirect('atasan/change_pass?notif=suces');
+        }
     }
 
     function logout()
