@@ -228,6 +228,25 @@ class Admin extends CI_Controller
 		$this->mylib->aview('v_detail_laporan', $data);
 	}
 
+	function laporan()
+	{
+		$data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE laporan_status = 0 AND laporan_bulan >= 1 OR laporan_status = 0 AND laporan_hari > 7");
+		$this->mylib->aview('v_laporan_2', $data);
+	}
+
+	function kirim_laporan($id)
+	{
+		$w = [
+			'laporan_id' => $id
+		];
+		$data = [
+			'laporan_tanggal_masuk' => date('Y-m-d')
+		];
+		$this->m_vic->update_data($w, $data, 'tbl_laporan');
+		$this->session->set_flashdata('suces', 'Laporan berhasil di kirim ulang');
+		redirect('admin/laporan?notif=suces');
+	}
+
 	function change_pass()
 	{
 		$this->mylib->aview('v_change_pass');
@@ -251,6 +270,7 @@ class Admin extends CI_Controller
 			redirect('admin/change_pass?notif=suces');
 		}
 	}
+
 
 	function logout()
 	{
