@@ -15,6 +15,7 @@
                         <th>Judul</th>
                         <th>Komisi Tujuan</th>
                         <th>Tanggal Laporan Masuk</th>
+                        <th>Bukti Dokumen</th>
                         <!-- <th>Status Laporan</th> -->
                         <th>Detail</th>
                     </tr>
@@ -32,6 +33,7 @@
                             <td><?php echo TanggalIndo($l->laporan_tanggal_masuk) ?></td>
                             <!-- <td><?php //echo $status 
                                         ?></td> -->
+                            <td align="center"><a href="<?php echo base_url() . 'dokumen/' . $l->laporan_bukti ?>" class="btn btn-sm btn-primary" target="_blank">Dokumen</a></td>
                             <td>
                                 <a href="<?php echo base_url() . 'atasan/detail_laporan/' . $l->laporan_id ?>" class="btn btn-primary"><span class="fa fa-info-circle"></span></a>
                             </td>

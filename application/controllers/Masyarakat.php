@@ -68,6 +68,11 @@ class Masyarakat extends CI_Controller
 
 	function tambah_laporan_act()
 	{
+		$nama_file = $_FILES['file_bukti']['name'];
+		$config['upload_path']   = './dokumen/';
+		$config['allowed_types'] = 'pdf|jpeg|jpg|png';
+		$this->load->library('upload', $config);
+		$this->upload->do_upload('file_bukti');
 		$kosakata = $this->db->query("SELECT kata_id FROM tbl_kata_kunci")->num_rows();
 		$laporan = strtolower($this->input->post('laporan'));
 		$filter = array("-", "'", ":", ".", ",", "!", "?", "(", ")", "/", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"); //bisa ditambahkan
@@ -112,7 +117,8 @@ class Masyarakat extends CI_Controller
 		}
 		$isi_laporan = [
 			'judul' => $this->input->post('judul'),
-			'laporan' => $this->input->post('laporan')
+			'laporan' => $this->input->post('laporan'),
+			'bukti' => $nama_file
 		];
 		$this->session->set_userdata($isi_laporan);
 		redirect('masyarakat/hasil_perhitungan');
@@ -132,6 +138,7 @@ class Masyarakat extends CI_Controller
 			'laporan_komisi' => $this->session->userdata('komisi'),
 			'laporan_tanggal_masuk' => date('Y-m-d'),
 			'laporan_status' => 0,
+			'laporan_bukti' => $this->session->userdata('bukti'),
 			'laporan_nilai_nb' => $this->session->userdata('nilai'),
 			'laporan_akurasi' => 1,
 			'h_pengguna' => $this->session->userdata('id'),
@@ -152,6 +159,7 @@ class Masyarakat extends CI_Controller
 			'laporan_komisi' => $this->session->userdata('komisi'),
 			'laporan_tanggal_masuk' => date('Y-m-d'),
 			'laporan_status' => 0,
+			'laporan_bukti' => $this->session->userdata('bukti'),
 			'laporan_nilai_nb' => $this->session->userdata('nilai'),
 			'laporan_akurasi' => 0,
 			'h_pengguna' => $this->session->userdata('id'),

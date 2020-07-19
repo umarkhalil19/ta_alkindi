@@ -51,6 +51,12 @@
 							</a>
 						</li>
 						<li>
+							<a href="<?php echo base_url() . 'admin/laporan'; ?>">
+								<i class="fa fa-list" aria-hidden="true"></i>
+								<span>Laporan</span>
+							</a>
+						</li>
+						<li>
 							<a href="<?php echo base_url() . 'admin/change_pass'; ?>">
 								<i class="fa fa-key" aria-hidden="true"></i>
 								<span>ubah Password</span>

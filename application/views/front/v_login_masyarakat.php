@@ -53,7 +53,7 @@
 					<div class="form-group mb-lg">
 						<label>Username</label>
 						<div class="input-group input-group-icon">
-							<input name="username" type="text" class="form-control input-lg" autocomplete="off" />
+							<input name="username" type="text" class="form-control input-lg" autocomplete="off" value="<?= set_value('username') ?>" />
 							<span class="input-group-addon">
 								<span class="icon icon-lg">
 									<i class="fa fa-user"></i>
