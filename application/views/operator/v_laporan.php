@@ -3,55 +3,60 @@
         <h2>Semua Laporan</h2>
     </header>
     <!-- start: page -->
-        <section class="panel">
-            
-    <?php if (isset($_GET['notif'])) : _notif($this->session->flashdata($_GET['notif']));
-endif; ?>
-            <header class="panel-heading">
-                <h2 class="panel-title">Data Semua Laporan</h2>
-            </header>
-            <div class="panel-body">
-                <table class="table table-bordered table-striped mb-none" id="datatable-default">
-                    <thead>
+    <section class="panel">
+
+        <?php if (isset($_GET['notif'])) : _notif($this->session->flashdata($_GET['notif']));
+        endif; ?>
+        <header class="panel-heading">
+            <h2 class="panel-title">Data Semua Laporan</h2>
+        </header>
+        <div class="panel-body">
+            <table class="table table-bordered table-striped mb-none" id="datatable-default">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Judul</th>
+                        <th>Komisi Tujuan</th>
+                        <th>Tanggal Laporan</th>
+                        <th>Status Laporan</th>
+                        <th>Bukti Dokumen</th>s
+                        <th>Detail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $no = 1;
+                    foreach ($laporan->result() as $l) {
+                        $nama = $this->db->query("SELECT komisi_nama FROM tbl_komisi WHERE komisi_id='$l->laporan_komisi'")->row();
+                        switch ($l->laporan_status) {
+                            case '0':
+                                $status = "Diterima";
+                                break;
+                            case '1':
+                                $status = "Ditidaklanjuti";
+                                break;
+                            case '2':
+                                $status = "Selesai";
+                                break;
+                            default:
+                                break;
+                        }
+                    ?>
                         <tr>
-                            <th>No</th>
-                            <th>Judul</th>
-                            <th>Komisi Tujuan</th>
-                            <th>Tanggal Laporan</th>
-                            <th>Status Laporan</th>
-                            <th>Detail</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                            $no = 1;
-                            foreach ($laporan->result() as $l) {
-                                $nama = $this->db->query("SELECT komisi_nama FROM tbl_komisi WHERE komisi_id='$l->laporan_komisi'")->row();
-                            switch ($l->laporan_status) {
-                                case '0':
-                                    $status = "Diterima";
-                                    break;
-                                case '1':
-                                    $status = "Ditidaklanjuti";
-                                    break;
-                                default:
-                                    break;
-                            }
-                        ?>
-                        <tr>
-                            <td><?php echo $no++?></td>
-                            <td><?php echo $l->laporan_judul?></td>
-                            <td><?php echo $nama->komisi_nama?></td>
-                            <td><?php echo TanggalIndo($l->h_tanggal)?></td>
-                            <td><?php echo $status?></td>
+                            <td><?php echo $no++ ?></td>
+                            <td><?php echo $l->laporan_judul ?></td>
+                            <td><?php echo $nama->komisi_nama ?></td>
+                            <td><?php echo TanggalIndo($l->laporan_tanggal_masuk) ?></td>
+                            <td><?php echo $status ?></td>
+                            <td align="center"><a href="<?php echo base_url() . 'dokumen/' . $l->laporan_bukti ?>" class="btn btn-sm btn-primary" target="_blank">Dokumen</a></td>s
                             <td>
-                                <a href="<?php echo base_url().'operator/detail_laporan/'.$l->laporan_id?>" class="btn btn-primary"><span class="fa fa-info-circle"></span></a>
+                                <a href="<?php echo base_url() . 'operator/detail_laporan/' . $l->laporan_id ?>" class="btn btn-primary"><span class="fa fa-info-circle"></span></a>
                             </td>
                         </tr>
-                        <?php }?>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </section>
     <!-- end: page -->
 </section>

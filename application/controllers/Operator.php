@@ -77,7 +77,7 @@ class Operator extends CI_Controller
 		$w = [
 			'laporan_komisi' => $this->session->userdata('komisi')
 		];
-		$data['laporan'] = $this->m_vic->edit_data($w, 'tbl_laporan');
+		$data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE laporan_status < 2 AND laporan_bulan >= 1 OR laporan_status < 2 AND laporan_hari <= 1");
 		$this->mylib->oview('v_laporan', $data);
 	}
 
@@ -86,7 +86,7 @@ class Operator extends CI_Controller
 		$w = [
 			'laporan_id' => $id
 		];
-		$data['laporan'] = $this->m_vic->edit_data($w, 'tbl_laporan')->row();
+		$data['laporan'] = $this->m_vic->edit_data($w, 'v_laporan')->row();
 		$this->mylib->oview('v_detail_laporan', $data);
 	}
 
@@ -102,6 +102,18 @@ class Operator extends CI_Controller
 		$this->m_vic->update_data($w, $data, 'tbl_laporan');
 		$this->session->set_flashdata('suces', 'Data Berhasil Diupdate');
 		redirect('operator/laporan?notif=suces');
+	}
+
+	function laporan_selesai($id)
+	{
+		$w = [
+			'laporan_id' => $id
+		];
+		$data = [
+			'laporan_status' => 2
+		];
+		$this->m_vic->update_data($w, $data, 'tbl_laporan');
+		redirect('operator/laporan');
 	}
 
 	function change_pass()

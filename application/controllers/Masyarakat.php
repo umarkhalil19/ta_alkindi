@@ -61,6 +61,18 @@ class Masyarakat extends CI_Controller
 		$this->mylib->mview('v_laporan_pending', $data);
 	}
 
+	function laporan_selesai($id)
+	{
+		$w = [
+			'laporan_id' => $id
+		];
+		$data = [
+			'laporan_status' => 2
+		];
+		$this->m_vic->update_data($w, $data, 'tbl_laporan');
+		redirect('masyarakat/laporan_proses');
+	}
+
 	function tambah_laporan()
 	{
 		$this->mylib->mview('v_tambah_laporan');
@@ -79,7 +91,7 @@ class Masyarakat extends CI_Controller
 		$text_clean = str_replace($filter, " ", $laporan); //bersihkan tanda baca
 		$kata = explode(" ", $text_clean);
 		$jumlah_komisi = $this->db->query("SELECT komisi_id FROM tbl_komisi")->num_rows();
-		for ($i = 1; $i < $jumlah_komisi; $i++) {
+		for ($i = 1; $i <= $jumlah_komisi; $i++) {
 			$kata_kunci = $this->db->query("SELECT kata FROM tbl_kata_kunci WHERE komisi_id='$i'");
 			foreach ($kata_kunci->result() as $k) {
 				if (in_array($k->kata, $kata)) {

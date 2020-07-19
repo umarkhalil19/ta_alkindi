@@ -230,7 +230,7 @@ class Admin extends CI_Controller
 
 	function laporan()
 	{
-		$data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE laporan_status = 0 AND laporan_bulan >= 1 OR laporan_status = 0 AND laporan_hari > 7");
+		$data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE laporan_status = 0 AND laporan_bulan >= 1 OR laporan_status = 0 AND laporan_hari > 1");
 		$this->mylib->aview('v_laporan_2', $data);
 	}
 
