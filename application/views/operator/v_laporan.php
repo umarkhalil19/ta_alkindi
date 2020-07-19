@@ -35,6 +35,9 @@
                             case '1':
                                 $status = "Ditidaklanjuti";
                                 break;
+                            case '2':
+                                $status = "Selesai";
+                                break;
                             default:
                                 break;
                         }
@@ -43,7 +46,7 @@
                             <td><?php echo $no++ ?></td>
                             <td><?php echo $l->laporan_judul ?></td>
                             <td><?php echo $nama->komisi_nama ?></td>
-                            <td><?php echo TanggalIndo($l->h_tanggal) ?></td>
+                            <td><?php echo TanggalIndo($l->laporan_tanggal_masuk) ?></td>
                             <td><?php echo $status ?></td>
                             <td align="center"><a href="<?php echo base_url() . 'dokumen/' . $l->laporan_bukti ?>" class="btn btn-sm btn-primary" target="_blank">Dokumen</a></td>s
                             <td>
