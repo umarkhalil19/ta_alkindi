@@ -205,6 +205,16 @@ class Admin extends CI_Controller
 		redirect('admin/kata_kunci?notif=suces');
 	}
 
+	function delete_kata($id)
+	{
+		$w = [
+			'kata_id' => $id
+		];
+		$this->m_vic->delete_data($w, 'tbl_kata_kunci');
+		$this->session->set_flashdata('suces', 'Data Berhasil Dihapus');
+		redirect('admin/kata_kunci?notif=suces');
+	}
+
 	function masyarakat()
 	{
 		$this->load->database();
@@ -227,6 +237,7 @@ class Admin extends CI_Controller
 		$data['laporan'] = $this->m_vic->edit_data($w, 'tbl_laporan')->row();
 		$this->mylib->aview('v_detail_laporan', $data);
 	}
+
 
 	function laporan()
 	{
