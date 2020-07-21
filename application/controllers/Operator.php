@@ -74,10 +74,8 @@ class Operator extends CI_Controller
 
 	function laporan()
 	{
-		$w = [
-			'laporan_komisi' => $this->session->userdata('komisi')
-		];
-		$data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE laporan_status < 2 AND laporan_bulan >= 1 OR laporan_status < 2 AND laporan_hari <= 1");
+		$w = $this->session->userdata('komisi');
+		$data['laporan'] = $this->db->query("SELECT * FROM v_laporan WHERE laporan_status < 2 AND laporan_bulan >= 1 AND laporan_komisi ='$w' OR laporan_status < 2 AND laporan_hari <= 1 AND laporan_komisi ='$w'");
 		$this->mylib->oview('v_laporan', $data);
 	}
 
