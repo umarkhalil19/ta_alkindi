@@ -22,7 +22,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url() . 'operator/kata_kunci/' . $this->session->userdata('komisi'); ?>">
+							<a href="<?php echo base_url() . 'operator/kata_kunci' ?>">
 								<i class="fa fa-list" aria-hidden="true"></i>
 								<span>Kata Kunci</span>
 							</a>

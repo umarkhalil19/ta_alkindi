@@ -31,11 +31,11 @@ class Operator extends CI_Controller
 		$this->mylib->oview('v_komisi', $data);
 	}
 
-	function kata_kunci($id)
+	function kata_kunci()
 	{
 		$this->load->database();
 		$w = [
-			'komisi_id' => $id
+			'komisi_id' => $this->session->userdata('komisi')
 		];
 		$data['kata'] = $this->m_vic->edit_data($w, 'tbl_kata_kunci');
 		$this->mylib->oview('v_kata_kunci', $data);
@@ -69,6 +69,17 @@ class Operator extends CI_Controller
 		];
 		$this->m_vic->insert_data($data, 'tbl_kata_kunci');
 		$this->session->set_flashdata('suces', 'Data Berhasil Ditambah');
+		redirect('operator/kata_kunci?notif=suces');
+	}
+
+	function delete_kata($id)
+	{
+		$w = [
+			'kata_id' => $id,
+			'komisi_id' => $this->session->userdata('komisi')
+		];
+		$this->m_vic->delete_data($w, 'tbl_kata_kunci');
+		$this->session->set_flashdata('suces', 'Data Berhasil Dihapus');
 		redirect('operator/kata_kunci?notif=suces');
 	}
 
